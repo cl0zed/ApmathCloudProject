@@ -34,7 +34,7 @@ form {
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
-var n = 4, // number of layers
+var n = 5, // number of layers
     m = 58, // number of samples per layer
     stack = d3.layout.stack(),
     layers = stack(d3.range(n).map(function() { return bumpLayer(m, .1); })),

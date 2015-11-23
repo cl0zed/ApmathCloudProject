@@ -62,7 +62,7 @@ form {
 var n = 4,
 	m = 58,
 	stack = d3.layout.stack(),
-    layers = stack(d3.range(@n).map(function() { return bumpLayer(m, .1); })),
+    layers = stack(d3.range(n).map(function() { return bumpLayer(m, .1); })),
     yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),
     yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
 
@@ -157,7 +157,7 @@ function transitionStacked() {
 }
 
 // Inspired by Lee Byron's test data generator.
-function bumpLayer(@n, o) {
+function bumpLayer(n, o) {
 
   function bump(a) {
     var x = 1 / (.1 + Math.random()),

@@ -60,7 +60,7 @@ form {
 }
 
 var stack = d3.layout.stack(),
-    layers = stack(d3.range(n).map(function() { return bumpLayer(m, .1); })),
+    layers = stack(d3.range(@n).map(function() { return bumpLayer(@m, .1); })),
     yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),
     yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
 
@@ -69,7 +69,7 @@ var margin = {top: 40, right: 10, bottom: 20, left: 10},
     height = 500 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
-    .domain(d3.range(m))
+    .domain(d3.range(@m))
     .rangeRoundBands([0, width], .08);
 
 var y = d3.scale.linear()
@@ -77,7 +77,7 @@ var y = d3.scale.linear()
     .range([height, 0]);
 
 var color = d3.scale.linear()
-    .domain([0, n - 1])
+    .domain([0, @n - 1])
     .range(["#aad", "#556"]);
 
 var xAxis = d3.svg.axis()
@@ -155,20 +155,20 @@ function transitionStacked() {
 }
 
 // Inspired by Lee Byron's test data generator.
-function bumpLayer(n, o) {
+function bumpLayer(@n, o) {
 
   function bump(a) {
     var x = 1 / (.1 + Math.random()),
         y = 2 * Math.random() - .5,
         z = 10 / (.1 + Math.random());
-    for (var i = 0; i < n; i++) {
+    for (var i = 0; i < @n; i++) {
       var w = (i / n - y) * z;
       a[i] += x * Math.exp(-w * w);
     }
   }
 
   var a = [], i;
-  for (i = 0; i < n; ++i) a[i] = o + o * Math.random();
+  for (i = 0; i < @n; ++i) a[i] = o + o * Math.random();
   for (i = 0; i < 5; ++i) bump(a);
   return a.map(function(d, i) { return {x: i, y: Math.max(0, d)}; });
 }

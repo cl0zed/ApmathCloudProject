@@ -55,7 +55,9 @@ form {
 	Response.Write(String.Format("alert({0});", samplesErrorMessage));
 }
 
-@Response.Write(String.Format("alert({0});", result));
+@if(true){
+	Response.Write(String.Format("alert({0});", result));
+}
 
 var stack = d3.layout.stack(),
     layers = stack(d3.range(n).map(function() { return bumpLayer(m, .1); })),

@@ -29,15 +29,15 @@ form {
 @{
 	var layersRequest = Request.Params["layers"];
 	var n2 = 3;
-	var layersClear = int.TryParse(layersRequest, out n);
+	var layersClear = int.TryParse(layersRequest, out n2);
 	var layerErrorMessage = "Check layer param";
 	
 	var samplesRequest = Request.Params["samples"];
 	var m2 = 58;
-	var samplesClear = int.TryParse(samplesRequest, out m);
+	var samplesClear = int.TryParse(samplesRequest, out m2);
 	var samplesErrorMessage = "Check sample param";
 	
-	var result = String.Concat("Layers: ", n.ToString(), " Samples: ", m.ToString());
+	var result = String.Concat("Layers: ", n2.ToString(), " Samples: ", m2.ToString());
 }
 
 </style>

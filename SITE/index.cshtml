@@ -52,7 +52,7 @@ form {
 @if(!samplesClear){
 	Response.Write(String.Format("alert({0});", samplesErrorMessage));
 }
-
+@Response.Write(String.Format("alert({0});", "layers: " + n + " Samples: " + m));
 var stack = d3.layout.stack(),
     layers = stack(d3.range(n).map(function() { return bumpLayer(m, .1); })),
     yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),

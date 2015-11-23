@@ -28,13 +28,13 @@ form {
 
 @{
 	var layersRequest = Request.Params["layers"];
-	var n2 = 3;
-	var layersClear = int.TryParse(layersRequest, out n2);
+	var layers = 3;
+	var layersClear = int.TryParse(layersRequest, out layers);
 	var layerErrorMessage = "Check layer param";
 	
 	var samplesRequest = Request.Params["samples"];
-	var m2 = 58;
-	var samplesClear = int.TryParse(samplesRequest, out m2);
+	var samples = 58;
+	var samplesClear = int.TryParse(samplesRequest, out samples);
 	var samplesErrorMessage = "Check sample param";
 	
 	var result = String.Concat("Layers: ", n2.ToString(), " Samples: ", m2.ToString());
@@ -55,12 +55,8 @@ form {
 	Response.Write(String.Format("alert({0});", samplesErrorMessage));
 }
 
-@if(true){
-	Response.Write(String.Format("alert({0});", result));
-}
-
-var n = @n2,
-	m = @m2,
+var n = @layers,
+	m = @samples,
 	stack = d3.layout.stack(),
     layers = stack(d3.range(n).map(function() { return bumpLayer(m, .1); })),
     yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),

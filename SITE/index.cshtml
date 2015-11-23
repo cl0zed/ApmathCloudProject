@@ -134,8 +134,8 @@ function transitionGrouped() {
   rect.transition()
       .duration(500)
       .delay(function(d, i) { return i * 10; })
-      .attr("x", function(d, i, j) { return x(d.x) + x.rangeBand() / n * j; })
-      .attr("width", x.rangeBand() / n)
+      .attr("x", function(d, i, j) { return x(d.x) + x.rangeBand() / @n * j; })
+      .attr("width", x.rangeBand() / @n)
     .transition()
       .attr("y", function(d) { return y(d.y); })
       .attr("height", function(d) { return height - y(d.y); });
@@ -162,7 +162,7 @@ function bumpLayer(@n, o) {
         y = 2 * Math.random() - .5,
         z = 10 / (.1 + Math.random());
     for (var i = 0; i < @n; i++) {
-      var w = (i / n - y) * z;
+      var w = (i / @n - y) * z;
       a[i] += x * Math.exp(-w * w);
     }
   }

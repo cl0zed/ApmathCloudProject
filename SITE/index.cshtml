@@ -26,6 +26,18 @@ form {
   top: 10px;
 }
 
+@{
+	var layersRequest = Request.Params["layers"];
+	var n = 3;
+	var layersClear = int.TryParse(layersRequest, out n);
+	var layerErrorMessage = "Check layer param"
+	
+	var samplesRequest = Request.Params["samples"];
+	var m = 58;
+	var samplesClear = int.TryParse(samplesRequest, out m);
+	var samplesErrorMessage = "Check sample param";
+}
+
 </style>
 <form>
   <label><input type="radio" name="mode" value="grouped"> Grouped</label>
@@ -34,9 +46,14 @@ form {
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
-var n = 5, // number of layers
-    m = 58, // number of samples per layer
-    stack = d3.layout.stack(),
+@if(!layersClear){
+	Response.Write(String.Format("alert({0});", layerErrorMessage));
+}
+@if(!samplesClear){
+	Response.Write(String.Format("alert({0});", samplesErrorMessage));
+}
+
+var stack = d3.layout.stack(),
     layers = stack(d3.range(n).map(function() { return bumpLayer(m, .1); })),
     yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),
     yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });

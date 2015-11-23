@@ -36,6 +36,8 @@ form {
 	var m = 58;
 	var samplesClear = int.TryParse(samplesRequest, out m);
 	var samplesErrorMessage = "Check sample param";
+	
+	var result = String.Concat("Layers: ", n.ToString(), " Samples: ", m.ToString());
 }
 
 </style>
@@ -52,7 +54,7 @@ form {
 @if(!samplesClear){
 	Response.Write(String.Format("alert({0});", samplesErrorMessage));
 }
-@{ result = String.Concat("Layers: ", n.ToString(), " Samples: ", m.ToString()); }
+
 @Response.Write(String.Format("alert({0});", result));
 
 var stack = d3.layout.stack(),
